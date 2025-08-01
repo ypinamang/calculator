@@ -117,6 +117,9 @@ equalButton.addEventListener("click", () => {
     } else result = result;
 
     clearDisplay();
+    if (result.toString().length >= 7){
+        result = result.toExponential(4);
+    }
     displayArea.textContent = result;
     isEqualClicked = true;
     console.log(firstNum);

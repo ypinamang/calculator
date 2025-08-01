@@ -55,7 +55,24 @@ const displayClickedBtn = function(button, displayArea) {
 const displayArea = document.querySelector(".calc-display");
 console.log(displayArea.textContent);
 
-const buttons = document.querySelectorAll(".number");
+const numberButtons = document.querySelectorAll(".number");
+
+let firstNum = 0;
+let secondNum = 0;
+numberButtons.forEach(button => button.addEventListener("click", () => {
+    displayClickedBtn(button, displayArea);
+    firstNum = displayArea.textContent 
+    firstNum = parseFloat(firstNum);
+}));
+
+const operatorButtons = document.querySelectorAll(".symbol");
+operatorButtons.forEach(button => button.addEventListener("click", () => {
+    clearDisplay();
+
+}))
 
 
-buttons.forEach(button => button.addEventListener("click", () => displayClickedBtn(button, displayArea)));
+const clearDisplay = function(){
+    displayArea.textContent = "";
+}
+

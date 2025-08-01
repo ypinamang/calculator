@@ -34,3 +34,13 @@ const operate = function (operator, a, b) {
 }
 
 
+const displayArea = document.querySelector(".calc-display")
+document.addEventListener("keydown", (event) => {
+    if (!isNaN(event.key)){
+        displayArea.textContent += event.key;
+    }else if (event.key == "Backspace") {
+        displayArea.textContent = displayArea.textContent.slice(0, -1);
+    } 
+    
+    }
+);

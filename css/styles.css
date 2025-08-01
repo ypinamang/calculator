@@ -1,0 +1,74 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.calc-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    width: 401px;
+    height: 70vh;
+    background: hsl(201, 100%, 14%);
+    font-size: 32px;
+    font-weight: 500;
+    color: hsl(200, 78%, 84%);
+    border-radius: 16px;
+    font-family: "Oswald", sans-serif;
+    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+   
+}
+
+
+.calc-display {
+    width: 300px;
+    background: hsl(0, 100%, 100%);
+    
+    flex: 1;
+}
+
+.calc-btn-container {
+    display: flex;
+  
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    width: 300px;
+    gap: 20px;
+    flex: 2;
+}
+
+.number, .symbol {
+    padding: 4px;
+    margin: 2px;
+    border: 1px solid hsl(200, 78%, 84%);
+    flex-grow: 1;
+    width: 20%;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.number, .symbol, .calc-display {
+    border-radius: 16px;
+
+}
+
+.number:hover, .symbol:hover {
+    cursor: pointer;
+    background-color: hsl(215, 100%, 14%);
+}

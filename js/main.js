@@ -34,4 +34,16 @@ const operate = function (operator, a, b) {
     }
 }
 
+// Show clicked number in display
 
+const displayClickedBtn = function(button, displayArea) {
+    displayArea.textContent += button.textContent;
+}
+
+const displayArea = document.querySelector(".calc-display");
+console.log(displayArea.textContent);
+
+const buttons = document.querySelectorAll(".number");
+
+
+buttons.forEach(button => button.addEventListener("click", () => displayClickedBtn(button, displayArea)));

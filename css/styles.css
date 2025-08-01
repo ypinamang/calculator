@@ -41,6 +41,7 @@ html, body {
     color: hsl(201, 100%, 14%);
     padding: 16px;
     flex: 1;
+    overflow: hidden;
     
 }
 
@@ -84,4 +85,10 @@ html, body {
 .symbol:hover {
     cursor: pointer;
     background-color:hsl(0, 89%, 15%)
+}
+
+.calc-display {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }

@@ -27,10 +27,11 @@ const operate = function (operator, a, b) {
             return multiply(a, b);
             break;
         case "/":
-            return divide(a, b);
+            if (b == 0) return "Not gonna work";
+            return a / b;
             break;
         default: 
-            return "Invalid";
+            return 0;
     }
 }
 
@@ -41,8 +42,7 @@ const displayClickedBtn = function(button, displayArea) {
     // don't display if character is an equal sign
     if (button.textContent == "=") return;
     if ((button.textContent == ".") && (!displayArea.textContent.includes("."))){
-            displayArea.textContent += "."
-            console.log("first dot now exists..accepting no more");
+            displayArea.textContent += ".";
         } else {
               if (button.textContent !== ".") {
                 displayArea.textContent += button.textContent;
@@ -59,12 +59,13 @@ const numberButtons = document.querySelectorAll(".number");
 
 let firstNum = 0;
 let operator = "";
-let equalClicked = false;
+let isEqualClicked = false;
+let result = 0;
 
 numberButtons.forEach(button => button.addEventListener("click", () => {
-    if (equalClicked) {
+    if (isEqualClicked) {
         clearDisplay();
-        equalClicked = false;
+        isEqualClicked = false;
     }
     displayClickedBtn(button, displayArea);
 }));
@@ -75,6 +76,7 @@ const operatorButtons = document.querySelectorAll(".operator");
 operatorButtons.forEach(button => button.addEventListener("click", () => {
     firstNum = displayArea.textContent;
     firstNum = parseFloat(firstNum);
+    
     clearDisplay();
     switch(button.id) {
         case "add":
@@ -93,7 +95,6 @@ operatorButtons.forEach(button => button.addEventListener("click", () => {
             console.log("Invalid");
     }
    
-
 }))
 
 
@@ -104,15 +105,20 @@ const clearDisplay = function(){
 const equalButton = document.querySelector("#equal-sign");
 
 equalButton.addEventListener("click", () => {
-    equalClicked = true;
+
+    
 
     let secondNum = displayArea.textContent;
     secondNum = parseFloat(secondNum);
 
     // Perform calc
-    let result = operate(operator, firstNum, secondNum);
+    if (!isEqualClicked){
+    result = operate(operator, firstNum, secondNum);
+    } else result = result;
+
     clearDisplay();
-    displayArea.textContent = result
+    displayArea.textContent = result;
+    isEqualClicked = true;
     console.log(firstNum);
     console.log(operator);
     console.log(secondNum);

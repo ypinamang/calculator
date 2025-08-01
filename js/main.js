@@ -37,7 +37,10 @@ const operate = function (operator, a, b) {
 // Show clicked number in display
 
 const displayClickedBtn = function(button, displayArea) {
+    // don't display if character is an equal sign
+    if (button.textContent !== "="){ 
     displayArea.textContent += button.textContent;
+    }
 }
 
 const displayArea = document.querySelector(".calc-display");

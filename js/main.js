@@ -37,11 +37,20 @@ const operate = function (operator, a, b) {
 // Show clicked number in display
 
 const displayClickedBtn = function(button, displayArea) {
+    const operatorSymbols = ["+", "-", "*", "/"];
     // don't display if character is an equal sign
-    if (button.textContent !== "="){ 
-    displayArea.textContent += button.textContent;
+    if (button.textContent == "=") return;
+    if ((button.textContent == ".") && (!displayArea.textContent.includes("."))){
+            displayArea.textContent += "."
+            console.log("first dot now exists..accepting no more");
+        } else {
+              if (button.textContent !== ".") {
+                displayArea.textContent += button.textContent;
+              }     
+        }
     }
-}
+
+
 
 const displayArea = document.querySelector(".calc-display");
 console.log(displayArea.textContent);

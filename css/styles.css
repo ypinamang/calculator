@@ -72,11 +72,16 @@ html, body {
 
 }
 
-.number:hover, .symbol:hover {
+.number:hover {
     cursor: pointer;
     background-color: hsl(215, 100%, 14%);
 }
 
 .symbol {
     background-color: hsl(0, 89%, 26%);
+}
+
+.symbol:hover {
+    cursor: pointer;
+    background-color:hsl(0, 89%, 15%)
 }

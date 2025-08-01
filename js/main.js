@@ -61,6 +61,7 @@ let firstNum = 0;
 let operator = "";
 let isEqualClicked = false;
 let result = 0;
+let isOperatorClicked = false;
 
 numberButtons.forEach(button => button.addEventListener("click", () => {
     if (isEqualClicked) {
@@ -70,14 +71,17 @@ numberButtons.forEach(button => button.addEventListener("click", () => {
     displayClickedBtn(button, displayArea);
 }));
 
+// Monitor operations with object??
+const singleOperation = {firstNum: 0, operator: "", secondNum: 0};
+let operatorClickCount = 0
+
+
 
 
 const operatorButtons = document.querySelectorAll(".operator");
 operatorButtons.forEach(button => button.addEventListener("click", () => {
-    firstNum = displayArea.textContent;
-    firstNum = parseFloat(firstNum);
+   
     
-    clearDisplay();
     switch(button.id) {
         case "add":
             operator = "+";
@@ -94,8 +98,19 @@ operatorButtons.forEach(button => button.addEventListener("click", () => {
         default:
             console.log("Invalid");
     }
+
    
-}))
+    console.log(operator);
+    if (operatorClickCount < 1 ){
+    firstNum = displayArea.textContent;
+    firstNum = parseFloat(firstNum);
+    }
+    clearDisplay();
+    operatorClickCount += 1;
+    console.log(operatorClickCount);
+
+   
+}));
 
 
 const clearDisplay = function(){
@@ -117,16 +132,21 @@ equalButton.addEventListener("click", () => {
     } else result = result;
 
     clearDisplay();
-    if (result.toString().length >= 7){
+    if (result.toString().length > 9){
         result = result.toExponential(4);
     }
     displayArea.textContent = result;
     isEqualClicked = true;
+    operatorClickCount = 0;
     console.log(firstNum);
     console.log(operator);
     console.log(secondNum);
     console.log(result);
-
 });
 
 
+function resetSingleOperation() {
+    singleOperation.firstNum = 0;
+    singleOperation.operator = "";
+    singleOperation.secondNum = 0;
+}

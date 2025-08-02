@@ -32,3 +32,90 @@ const operate = function (operator, a, b) {
             break;
     }
 }
+
+const displayArea = document.querySelector(".calc-display");
+
+const numberButtons = document.querySelectorAll(".number.btn");
+numberButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        if ((!isOperatorClicked) && (!isEqualClicked) ){
+        displayArea.textContent += button.textContent;
+        } else {
+            displayArea.textContent = button.textContent;
+            isOperatorClicked = false;
+            isEqualClicked = false;
+        }
+    })
+})
+
+
+
+const operatorButtons = document.querySelectorAll(".operator.btn");
+operatorButtons.forEach(button => {
+    if (button.id != "subtract") {
+        button.addEventListener("click", () => {
+            if ((!firstNum) && (displayArea.textContent)){
+            firstNum = getNumInDisplay();
+            } 
+            displayArea.textContent = button.textContent;
+            isOperatorClicked = true;
+
+            switch(button.id) {
+                case "add":
+                    operator = "+";
+                    break;
+                case "multiply":
+                    operator = "*";
+                    break;
+                case "divide":
+                    operator = "/";
+                    break;
+            }
+            console.log(`${firstNum} ${operator}`);
+        })
+    }
+});
+ 
+
+const clearBtn = document.querySelector(".clear-btn")
+clearBtn.addEventListener("click", () => {
+    displayArea.textContent = "";
+    isEqualClicked = false;
+    isOperatorClicked = false;
+    firstNum = 0
+    operator = "+";
+    secondNum = 0;
+})
+
+let isOperatorClicked = false;
+let isEqualClicked = false;
+
+const validOperators = ["+", "-", "*" ,"/"];
+let operator, firstNum, secondNum;
+
+function getNumInDisplay() {
+    return displayArea.textContent;
+}
+
+const equalSign = document.querySelector("#equal-sign"); 
+equalSign.addEventListener("click", () => {
+    let secondNum = getNumInDisplay()
+    firstNum = parseFloat(firstNum);
+    secondNum = parseFloat(secondNum);
+    console.log(`${firstNum} ${operator} ${secondNum}`);
+    
+    // Condition checker
+    let isBothNumbersProper = (!isNaN(firstNum)) && (!isNaN(secondNum));
+    let isOperatorUnavailable = (!operator)
+
+    if (isNaN(secondNum)){
+        if ((operator == "*") || (operator == "/")){
+            secondNum = 1;
+        } else secondNum = 0;
+    }
+    
+    let result = operate(operator, firstNum, secondNum);
+    firstNum = result;
+    displayArea.textContent = result;
+    isEqualClicked = true;
+});

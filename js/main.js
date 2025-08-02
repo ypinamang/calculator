@@ -17,7 +17,7 @@ const divide = function (a, b) {
 
 const operate = function (operator, a, b) {
     switch (operator) {
-        case "+": 
+        case "+":
             return add(a, b);
             break;
         case "-":
@@ -32,15 +32,3 @@ const operate = function (operator, a, b) {
             break;
     }
 }
-
-
-const displayArea = document.querySelector(".calc-display")
-document.addEventListener("keydown", (event) => {
-    if (!isNaN(event.key)){
-        displayArea.textContent += event.key;
-    }else if (event.key == "Backspace") {
-        displayArea.textContent = displayArea.textContent.slice(0, -1);
-    } 
-    
-    }
-);

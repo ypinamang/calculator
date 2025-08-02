@@ -92,6 +92,10 @@ let isEqualClicked = false;
 
 const validOperators = ["+", "-", "*" ,"/"];
 let operator, firstNum, secondNum;
+// Initialize all operands and operator to 1 at the start of the program
+operator = "+";
+firstNum = 0;
+secondNum = 0;
 
 function getNumInDisplay() {
     return displayArea.textContent;
@@ -119,3 +123,4 @@ equalSign.addEventListener("click", () => {
     displayArea.textContent = result;
     isEqualClicked = true;
 });
+
